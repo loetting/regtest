@@ -17,7 +17,7 @@ class PDF:
     def download(self, destination):
         source_file = urllib2.urlopen(self.url)
         data = source_file.read()
-        with open(destination, "wb") as destination_file:
+        with open(destination, mode='wb') as destination_file:
             destination_file.write(data)
         self.destination = destination
 
@@ -38,8 +38,7 @@ class PDF:
         for page in PDFPage.get_pages(document):
             interpreter.process_page(page)
 
-        text = retstr.getvalue()
-
+        text = retstr.getvalue().decode('ascii', 'ignore')
         document.close()
         device.close()
         retstr.close()
