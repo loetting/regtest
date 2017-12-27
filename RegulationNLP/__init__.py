@@ -2,3 +2,4 @@ from RegDataNLP import RegDataNLP
 from Corpus import Corpus
 from RestrictiveWordClassifier import RestrictiveWordClassifier
 from Dandelion import Dandelion
+from RegulatoryHierarchyClassifier import RegulatoryHierarchyClassifier

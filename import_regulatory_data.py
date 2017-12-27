@@ -3,7 +3,7 @@
 
 import sys
 import time
-from RegulationNLP import RestrictiveWordClassifier, RegDataNLP, Dandelion
+from RegulationNLP import RestrictiveWordClassifier, RegDataNLP, Dandelion, RegulatoryHierarchyClassifier
 from PDF import PDF
 
 if len(sys.argv) != 2:
@@ -18,6 +18,12 @@ pdf.download('working_download.pdf')
 text = pdf.get_text()
 pdf.remove()
 print "-------------------------"
+
+classifier = RegulatoryHierarchyClassifier(text)
+sections = classifier.getSubsections()
+print classifier.getDivision()['title']
+for s in sections:
+    print s['title']
 
 # write machine readable text to file for review
 filename = "results/pdf_to_text_%s.txt" % (time.time())

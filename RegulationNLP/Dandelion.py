@@ -8,7 +8,7 @@ class Dandelion:
 
     NUM_ENTITIES = 3
     MIN_CONFIDENCE = 0.7
-    CHAR_LIMIT = 3500
+    CHAR_LIMIT = 3000
 
 
     def getEntities(self, text):
