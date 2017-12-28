@@ -30,12 +30,18 @@ class RegulatoryHierarchyClassifier:
             results = re.search(pattern, text)
             curr_sub['text'] = results.group(2)
 
+    # get array of subsections
+    # params: None
     def getSubsections(self):
         return self.subsections
 
+    # get division object (keys: title, number)
+    # params: None
     def getDivision(self):
         return self.division_obj
 
+    # get chapter object (keys: title, number)
+    # params: None
     def getChapter(self):
         return self.chapter_obj
             

@@ -7,7 +7,10 @@ class RestrictiveWordClassifier:
     restrictive_words = ['shall', 'must', 'required', 'prohibited']
     restrictive_tuples = {'may':'not'}
 
+    # get count of restrictive words
+    # params: text (text to be processed)
     def getCount(self, text):
+        # counter not really necessary here, used so it's extensible to answering more specific questions
         counter = Counter()
         target = None
         key = None

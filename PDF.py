@@ -14,6 +14,8 @@ class PDF:
         self.url = url
         self.destination = None
 
+    # download PDF from source URL to local machine for processing
+    # params: destination (file to save working PDF)
     def download(self, destination):
         source_file = urllib2.urlopen(self.url)
         data = source_file.read()
@@ -21,6 +23,8 @@ class PDF:
             destination_file.write(data)
         self.destination = destination
 
+    # extract text from PDF
+    # params: None
     def get_text(self):
         if not self.destination:
             # TODO better exception/error handling
@@ -44,6 +48,8 @@ class PDF:
         retstr.close()
         return text
 
+    # remove local working copy of PDF
+    # params: None
     def remove(self):
         os.remove(self.destination)
         self.destination = None

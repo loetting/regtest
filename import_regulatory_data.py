@@ -19,18 +19,23 @@ text = pdf.get_text()
 pdf.remove()
 print "-------------------------"
 
-classifier = RegulatoryHierarchyClassifier(text)
-sections = classifier.getSubsections()
-print classifier.getDivision()['title']
-for s in sections:
-    print s['title']
-
 # write machine readable text to file for review
 filename = "results/pdf_to_text_%s.txt" % (time.time())
 print "TEXT FILE: "
 print filename
 file = open(filename, 'w')
 file.write(text)
+print "-------------------------"
+
+print "BASIC HIERARCHY DATA:"
+classifier = RegulatoryHierarchyClassifier(text)
+sections = classifier.getSubsections()
+print "DIVISION: %s" % (classifier.getDivision()['title'])
+print "CHAPTER: %s" % (classifier.getChapter()['title'])
+print "SUBSECTIONS: "
+for s in sections:
+    print s['title']
+print "-------------------------"
 
 # count number of restrictive words
 classifier = RestrictiveWordClassifier()
@@ -40,16 +45,15 @@ print "-------------------------"
 
 # grab some possible tags using nltk
 print "POSSIBLE KEYWORDS, NLTK"
-nlp = RegDataNLP()
-entities = nlp.getNamedEntities(text)
+nlp = RegDataNLP(text)
+entities = nlp.getNamedEntities()
 for entity in entities:
     print entity
 print "-------------------------"
 
 # grab some possible tags using tf-idf
 print "POSSIBLE KEYWORDS, TF-IDF"
-nlp = RegDataNLP()
-keywords = nlp.getKeywords(text)
+keywords = nlp.getKeywords()
 for keyword in keywords:
     print keyword
 print "-------------------------"
